@@ -4,7 +4,7 @@ import { useFonts, RobotoMono_700Bold, RobotoMono_500Medium, RobotoMono_400Regul
 import { useEffect } from 'react';
 
 export default function App() {
-  const[fontLoaded] = useFonts({
+  const [fontLoaded] = useFonts({
     RobotoMono_700Bold,
     RobotoMono_500Medium,
     RobotoMono_400Regular
@@ -26,18 +26,18 @@ export default function App() {
 
       <Text style={styles.subtitle}> Faça login em sua conta </Text>
 
-      <View style={styles.viewEmail}>
-        <Text style={styles.txtViewEmail}> Email </Text>
-        <TextInput style={styles.inputEmail} placeholder='Digite seu email' placeholderTextColor='#8b8b8b'/>
+      <View style={styles.viewInput}>
+        <Text style={styles.txtViewInput}> Email </Text>
+        <TextInput style={styles.input} placeholder='Digite seu email' placeholderTextColor='#8b8b8b' />
       </View>
 
-      <View style={styles.viewSenha}>
-        <Text style={styles.txtViewSenha}> Senha </Text>
-        <TextInput style={styles.inputSenha} placeholder='Digite sua senha' placeholderTextColor='#8b8b8b'/>
+      <View style={styles.viewInput}>
+        <Text style={styles.txtViewInput}> Senha </Text>
+        <TextInput style={styles.input} placeholder='Digite sua senha' placeholderTextColor='#8b8b8b' />
       </View>
 
       <Pressable>
-        <Text style={styles.default_txt}> Esqueci minha senha </Text>
+        <Text style={styles.txtLink}> Esqueci minha senha </Text>
       </Pressable>
 
       <TouchableOpacity style={styles.entrar}>
@@ -46,14 +46,29 @@ export default function App() {
 
       <Text style={styles.default_txt}> Ou </Text>
 
-      <TouchableOpacity style={styles.btnEntrarCom}>
-        <Image
-          style={styles.icon}
-          source={require('./src/assets/images/chrome.png')}
-        />
+      <View style={styles.viewBtns}>
+        <TouchableOpacity style={styles.btnEntrarCom}>
+          <Image
+            style={styles.icon}
+            source={require('./src/assets/images/chrome.png')}
+          />
+        </TouchableOpacity>
 
-        <Text style={styles.txtEntrarCom}> Entrar </Text>
-      </TouchableOpacity>
+        <TouchableOpacity style={styles.btnEntrarCom}>
+          <Image
+            style={styles.icon}
+            source={require('./src/assets/images/facebook.png')}
+          />
+        </TouchableOpacity>
+      </View>
+
+      <View style={styles.signup}>
+        <Text style={styles.default_txt}> Não possui cadastro?</Text>
+
+        <Pressable>
+        <Text style={styles.txtLink}> Cadastre-se aqui! </Text> 
+      </Pressable>
+      </View>
 
       <StatusBar style="auto" />
 
@@ -83,35 +98,19 @@ const styles = StyleSheet.create({
     fontFamily: 'RobotoMono_500Medium'
   },
 
-  viewEmail: {
+  viewInput: {
     width: '80%'
   },
-  txtViewEmail: {
+  txtViewInput: {
     marginBottom: '5%',
     color: '#8b8b8b',
     fontFamily: 'RobotoMono_400Regular'
   },
-  inputEmail: {
+  input: {
     height: 50,
     padding: 10,
     borderRadius: 10,
-    backgroundColor:'#282828',
-    fontFamily: 'RobotoMono_400Regular'
-  },
-
-  viewSenha: {
-    width: '80%'
-  },
-  txtViewSenha: {
-    marginBottom: '5%',
-    color: '#8b8b8b',
-    fontFamily: 'RobotoMono_400Regular'
-  },
-  inputSenha: {
-    height: 40,
-    padding: 10,
-    borderRadius: 10,
-    backgroundColor:'#282828',
+    backgroundColor: '#282828',
     fontFamily: 'RobotoMono_400Regular'
   },
 
@@ -122,27 +121,41 @@ const styles = StyleSheet.create({
 
   entrar: {
     width: '80%',
-    height: 40,
+    height: 50,
     borderRadius: 10,
     backgroundColor: '#a688fa',
-    // marginTop: 40,
     alignItems: "center",
     justifyContent: "center"
   },
   txtEntrar: {
     color: 'white',
-    fontSize: 16,
+    fontSize: 18,
     fontFamily: 'RobotoMono_500Medium'
   },
 
+  viewBtns: { 
+    flexDirection: "row",
+  },
   btnEntrarCom: {
-
+    width: 50,
+    height: 50,
+    borderRadius: 10,
+    margin: 10,
+    padding: 10,
+    backgroundColor: '#282828',
+    alignItems: "center",
+    justifyContent: "center"
   },
   icon: {
-    width: 10,
-    height: 10,
+    width: 20,
+    height: 20,
   },
-  txtEntrarCom: {
 
+  signup: {
+    flexDirection: "row"
+  },
+  txtLink: {
+    color: '#a688fa',
+    fontFamily: 'RobotoMono_500Medium'
   }
 });
