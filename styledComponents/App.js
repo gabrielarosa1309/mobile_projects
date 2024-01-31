@@ -1,43 +1,57 @@
 import { StatusBar } from 'expo-status-bar';
 import { useEffect, useState } from 'react';
-import { Image, Text, TouchableOpacity, View } from 'react-native';
+import { useFonts, Poppins_400Regular  } from '@expo-google-fonts/poppins'
+import { Container } from './src/components/Container/Container';
+import { Button, ButtonDecrement } from './src/components/Button/Button';
+import { Gradient } from './src/components/Gradient/Gradient';
+import { Title } from './src/components/Title/Title';
+import { ButtonText } from './src/components/ButtonText/ButtonText';
+
+
 
 export default function App() {
-  //hook
-  const[count, setCount] = useState(0);
 
-  //função de incremento
+  const [fontLoaded] = useFonts({
+    Poppins_400Regular
+  });
+
+  const [count, setCount] = useState(0);
+
+  //funcao de incremento
   const increment = () => {
     setCount(count + 1)
   }
 
-  //função de decremento
+  //funcao de decremento
   const decrement = () => {
     setCount(count - 1)
   }
 
-  //effect
   useEffect(() => {
     console.warn(`Contador atualizado: ${count}`)
   }, [count])
 
   return (
-    <View>
-      <Image 
-        source={require('./src/assets/download.png')} 
-      />
+    <Gradient
+      colors={['#2E335A', '#1C1B33']}
+      start={{ x: 0, y: 0 }}
+      end={{ x: 1, y: 1 }}
+    >
+      <Container>
+        <Title>
+          Contador: {count}
+        </Title>
 
-      <Text>Contador: {count}</Text>
+        <Button onPress={increment}>
+          <ButtonText>Incrementar</ButtonText>
+        </Button>
 
-      <TouchableOpacity onPress={increment}>
-        <Text> Incrementar </Text>
-      </TouchableOpacity>
+        <ButtonDecrement onPress={decrement}>
+          <ButtonText>Decrementar</ButtonText>
+        </ButtonDecrement>
 
-      <TouchableOpacity onPress={decrement}>
-        <Text> Decrementar </Text>
-      </TouchableOpacity>
-
-      {/* <StatusBar /> */}
-    </View>
+        <StatusBar style="auto" />
+      </Container>
+    </Gradient>
   );
 }
